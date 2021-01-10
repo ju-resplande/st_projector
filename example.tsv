@@ -1,0 +1,10 @@
+sentences	intents
+are you a bot?	bot_challenge
+are you a human?	bot_challenge
+am I talking to a bot?	bot_challenge
+am I talking to a human?	bot_challenge
+hey	greet
+hello	greet
+hi	greet
+good morning	greet
+good evening	greet
