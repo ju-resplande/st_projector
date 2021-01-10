@@ -46,7 +46,8 @@ def main():
     args = parse_args()
     tf.io.gfile = tb.compat.tensorflow_stub.io.gfile
 
-    examples = pd.read_table(args.data)[args.main_column]
+    data = pd.read_table(args.data)
+    examples = data[args.main_column]
     model = SentenceTransformer(args.st_model)
     embeddings = model.encode(examples, convert_to_tensor=True)
 
@@ -54,11 +55,9 @@ def main():
     writer.add_embedding(embeddings, examples, tag=args.st_model)
 
     metadata_path = os.path.join(args.log_dir, "00000", args.st_model, "metadata.tsv")
-    examples.to_csv(metadata_path, index=None, sep="\t")
+    data.to_csv(metadata_path, index=None, sep="\t")
 
-    program = tb.program.TensorBoard()
-    program.configure(argv=[None, "--logdir", args.log_dir])
-    program = tb.launch()
+    print(f'Please run tensorboard --logdir {args.log_dir}')
 
 
 if __name__ == "__main__":
