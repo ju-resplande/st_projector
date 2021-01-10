@@ -9,7 +9,7 @@ import pandas as pd
 
 
 def parse_args():
-    parser = argparse.ArgumentParser("st_projector")
+    parser = ArgumentParser("st_projector")
 
     parser.add_argument(
         "--data",
@@ -29,7 +29,7 @@ def parse_args():
         "--st_model",
         action="store",
         required=True,
-        help="Sentence",
+        help="Sentence-Transformers model name or path.",
     )
 
     parser.add_argument(
@@ -46,7 +46,7 @@ def main():
     args = parse_args()
     tf.io.gfile = tb.compat.tensorflow_stub.io.gfile
 
-    examples = df.read_csv(args.data, header=None)[args.main_column]
+    examples = pd.read_table(args.data)[args.main_column]
     model = SentenceTransformer(args.st_model)
     embeddings = model.encode(examples, convert_to_tensor=True)
 
