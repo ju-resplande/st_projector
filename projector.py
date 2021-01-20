@@ -57,7 +57,7 @@ def main():
     metadata_path = os.path.join(args.log_dir, "00000", args.st_model, "metadata.tsv")
     data.to_csv(metadata_path, index=None, sep="\t")
 
-    print(f'Please run "tensorboard --log_dir {args.log_dir}"')
+    print(f'Please run "tensorboard --logdir {args.log_dir}"')
 
 
 if __name__ == "__main__":
